@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRTA Driving License Verification</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-icons.css">
+    <style>
+        @font-face {
+            font-family: 'SolaimanLipi';
+            src: url('https://cdn.jsdelivr.net/gh/atulanand206/bengali-fonts@master/SolaimanLipi.ttf');
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            /* Applies watermark to the page background, outside the card */
+            background-image: url('images/body_bg01.jpg');
+            background-repeat: repeat;
+            font-family: 'SolaimanLipi', 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-card {
+            width: 100%;
+            max-width: 950px;
+            background-color: #ffffff;
+            padding: 40px 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            border: 1px solid #eaeaea;
+        }
+
+        /* Header Styles */
+        .header {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: center;
+            min-height: 80px;
+        }
+
+        .logo-left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 75px;
+        }
+
+        .logo-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 75px;
+        }
+
+        .header-text {
+            display: inline-block;
+            padding-top: 10px;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        /* Status Section */
+        .status-section {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .status-success {
+            color: #009900;
+            font-size: 34px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .status-valid {
+            color: #009900;
+            font-size: 19px;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 160px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+        }
+
+        /* Dividers */
+        .section-divider {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
+        }
+
+        /* Info Section (Desktop 2-column) */
+        .info-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            row-gap: 35px;
+            column-gap: 40px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .info-item.full-width {
+            grid-column: 1 / -1; 
+        }
+
+        .info-label {
+            flex: 0 0 170px;
+            font-weight: normal;
+            color: #444;
+            font-size: 16px;
+        }
+
+        .info-value {
+            font-weight: bold;
+            color: #111;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        .footer-section {
+            text-align: center;
+            font-size: 15px;
+            color: #444;
+            margin-top: 10px;
+            padding-bottom: 30px;
+        }
+
+        .footer-section a {
+            color: #8e44ad;
+            text-decoration: none;
+        }
+
+        .back-link {
+            position: absolute;
+            bottom: 30px;
+            right: 50px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            padding: 6px 15px;
+            border-radius: 4px;
+            color: #8e44ad;
+            font-size: 14px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-link i {
+            margin-right: 5px;
+        }
+
+        .back-link:hover {
+            background-color: #eee;
+        }
+        
+        /* Mobile Responsiveness (Screenshot 233203.png) */
+        @media (max-width: 768px) {
+            body { 
+                padding: 0; 
+                background-image: none; /* Often cleaner to remove body bg on mobile */
+            }
+            .main-card { 
+                padding: 25px 20px; 
+                border: none;
+                box-shadow: none;
+            }
+            .logo-left, .logo-right { 
+                height: 60px; 
+            }
+            .header-text p { 
+                font-size: 17px; 
+            }
+            
+            /* Convert grid to single column layout */
+            .info-grid { 
+                grid-template-columns: 1fr; 
+                row-gap: 25px; 
+            }
+            
+            /* Stack labels on top of values */
+            .info-item {
+                flex-direction: column;
+                gap: 12px; /* Space between "নাম:" and "ORWATUZZAMAN" */
+            }
+            
+            .info-label { 
+                flex: none; 
+                width: auto;
+                font-size: 18px; 
+                font-weight: bold; 
+                color: #444; 
+            }
+            
+            .info-value {
+                font-size: 18px;
+            }
+
+            .info-item.full-width { 
+                grid-column: 1; 
+            }
+            
+            .back-link {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                display: inline-block;
+                float: right;
+                margin-top: 10px;
+            }
+            
+            /* Clear float for back link */
+            .main-card::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        
+        <div class="header">
+            <!-- Left Logo -->
+            <img src="images/BRTA LOGO.png" alt="BRTA Logo" class="logo-left">
+            
+            <div class="header-text">
+                <p>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>
+                <p>সড়ক পরিবহন ও মহাসড়ক বিভাগ</p>
+                <p>বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ (বিআরটিএ)</p>
+            </div>
+            
+            <!-- Right Logo -->
+            <img src="images/govt_logo.png" alt="Govt Logo" class="logo-right">
+        </div>
+
+        <div class="status-section">
+            <div class="status-success">যাচাইকরণ সফল</div>
+            <div class="status-valid">এই ই-ড্রাইভিং লাইসেন্সটি বৈধ</div>
+        </div>
+
+        <div class="profile-section">
+            <img src="images/IMG_7027.JPG.jpeg" alt="Profile Picture" class="profile-img">
+        </div>
+
+        <!-- Upper Divider Line -->
+        <hr class="section-divider">
+
+        <div class="info-section">
+            <div class="info-title">ড্রাইভিং লাইসেন্স এর তথ্য</div>
+            
+            <div class="info-grid">
+                <!-- Row 1 -->
+                <div class="info-item full-width">
+                    <span class="info-label">নাম:</span>
+                    <span class="info-value">Raian Sadat</span>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="info-item">
+                    <span class="info-label">রেফারেন্স নম্বর:</span>
+                    <span class="info-value">DM123209NP020</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">রেফারেন্স এর তারিখ:</span>
+                    <span class="info-value">24/07/2026</span>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="info-item">
+                    <span class="info-label">লাইসেন্স এর ধরন:</span>
+                    <span class="info-value">NON-PROFESSIONAL</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">যানবাহনের শ্রেণী:</span>
+                    <span class="info-value">LIGHT, MOTORCYCLE</span>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="info-item">
+                    <span class="info-label">ইস্যুর তারিখ:</span>
+                    <span class="info-value">24/07/2026</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">মেয়াদোত্তীর্ণের তারিখ:</span>
+                    <span class="info-value">23/07/2033</span>
+                </div>
+
+                <!-- Row 5 -->
+                <div class="info-item full-width">
+                    <span class="info-label">লাইসেন্সিং কর্তৃপক্ষ:</span>
+                    <span class="info-value">DHAKA METRO-1</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lower Divider Line -->
+        <hr class="section-divider">
+
+        <div class="footer-section">
+            প্রয়োজনে <a href="https://www.brta.gov.bd" target="_blank">www.brta.gov.bd</a> অথবা ইমেইল করুন <a href="mailto:info@brta.gov.bd">info@brta.gov.bd</a>
+        </div>
+
+        <a href="https://bsp.brta.gov.bd" class="back-link">
+    &#11013; ফিরে যান
+        </a>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/functions.js"></script>
+</body>
+</html>
